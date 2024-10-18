@@ -1,6 +1,7 @@
 package com.bandeira.sistema_aposentadoria.infra.gateways;
 
 import com.bandeira.sistema_aposentadoria.application.gateways.PensionSimulationGateway;
+import com.bandeira.sistema_aposentadoria.application.usecases.FindUserByCpf;
 import com.bandeira.sistema_aposentadoria.domain.unums.Sex;
 import com.bandeira.sistema_aposentadoria.infra.feign.UserFeign;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +13,16 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
 
     private final UserFeign userFeign;
 
-    public PensionRepositoryGateway(UserFeign userFeign) {
+    private final FindUserByCpf findUserByCpf;
+
+    public PensionRepositoryGateway(UserFeign userFeign, FindUserByCpf findUserByCpf) {
         this.userFeign = userFeign;
+        this.findUserByCpf = findUserByCpf;
     }
 
     @Override
-    public String doMaleAgeSimulation(Long id) {
-        var user = userFeign.findById(id);
+    public String doMaleAgeSimulation(String cpf) {
+        var user = findUserByCpf.findUserByCpf(cpf);
 
         if (user.getSex().equals(Sex.MAN)) {
             if (user.getAge() >= 65 && user.getShortage() > 180
@@ -30,26 +34,21 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String doMaleSimulationForContributionTimeAndPoints(Long id) {
-        var user = userFeign.findById(id);
+    public String doMaleSimulationForContributionTimeAndPoints(String cpf) {
+        var user = findUserByCpf.findUserByCpf(cpf);
 
         if (user.getSex().equals(Sex.MAN)) {
             if (user.getAge() >= 65 && user.getShortage() > 180
                     && user.getYearsContribution() >= 35 && user.getPoints() >= 101) {
                 return "HABILITADO";
             }
-            return "NÃO HABILITADO";
         }
-
-        if (user.getAge() >= 62 && user.getShortage() > 144) {
-            return "SIM";
-        }
-        return "NÃO";
+        return "NÃO HABILITADO";
     }
 
     @Override
-    public String doMaleSimulationByAgeAndContributionTime(Long id) {
-        var user = userFeign.findById(id);
+    public String doMaleSimulationByAgeAndContributionTime(String cpf) {
+        var user = findUserByCpf.findUserByCpf(cpf);
 
         if (user.getSex().equals(Sex.MAN)) {
             if (user.getAge() >= 63 && user.getShortage() > 180
@@ -61,8 +60,8 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String doFemaleAgeSimulation(Long id) {
-        var user = userFeign.findById(id);
+    public String doFemaleAgeSimulation(String cpf) {
+        var user = findUserByCpf.findUserByCpf(cpf);
 
         if (user.getSex().equals(Sex.WOMAN)) {
             if (user.getAge() >= 62 && user.getShortage() > 180
@@ -74,8 +73,8 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String doFemaleSimulationForContributionTimeAndPoints(Long id) {
-        var user = userFeign.findById(id);
+    public String doFemaleSimulationForContributionTimeAndPoints(String cpf) {
+        var user = findUserByCpf.findUserByCpf(cpf);
 
         if (user.getSex().equals(Sex.WOMAN)) {
             if (user.getShortage() > 180 && user.getYearsContribution() >= 30
@@ -87,8 +86,8 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String doFemaleSimulationByAgeAndContributionTime(Long id) {
-        var user = userFeign.findById(id);
+    public String doFemaleSimulationByAgeAndContributionTime(String cpf) {
+        var user = findUserByCpf.findUserByCpf(cpf);
 
         if (user.getSex().equals(Sex.WOMAN)) {
             if (user.getShortage() > 180 && user.getYearsContribution() >= 30

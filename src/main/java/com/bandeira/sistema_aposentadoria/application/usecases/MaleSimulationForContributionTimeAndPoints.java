@@ -10,7 +10,7 @@ public class MaleSimulationForContributionTimeAndPoints {
         this.pensionSimulationGateway = pensionSimulationGateway;
     }
 
-    public String doMaleSimulationForContributionTimeAndPoints(Long id){
-        return pensionSimulationGateway.doMaleSimulationForContributionTimeAndPoints(id);
+    public String doMaleSimulationForContributionTimeAndPoints(String cpf){
+        return pensionSimulationGateway.doMaleSimulationForContributionTimeAndPoints(cpf);
     }
 }

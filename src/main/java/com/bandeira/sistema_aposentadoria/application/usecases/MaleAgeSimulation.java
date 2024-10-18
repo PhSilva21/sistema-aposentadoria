@@ -10,7 +10,7 @@ public class MaleAgeSimulation {
         this.pensionSimulationGateway = pensionSimulationGateway;
     }
 
-    public String doMaleAgeSimulation(Long id){
-        return pensionSimulationGateway.doMaleAgeSimulation(id);
+    public String doMaleAgeSimulation(String cpf){
+        return pensionSimulationGateway.doMaleAgeSimulation(cpf);
     }
 }

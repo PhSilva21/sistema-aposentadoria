@@ -10,8 +10,8 @@ public class FemaleSimulationForContributionTimeAndPoints {
         this.pensionSimulationGateway = pensionSimulationGateway;
     }
 
-    public String doFemaleSimulationForContributionTimeAndPoints(Long id){
-        return pensionSimulationGateway.doFemaleSimulationForContributionTimeAndPoints(id);
+    public String doFemaleSimulationForContributionTimeAndPoints(String cpf){
+        return pensionSimulationGateway.doFemaleSimulationForContributionTimeAndPoints(cpf);
     }
 
 }

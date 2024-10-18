@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
 
-    private String id;
+    private Long id;
 
     private String cpf;
 
@@ -41,7 +41,7 @@ public class User {
 
     private List<Benefit> benefits = new ArrayList<>();
 
-    public User(String id, String cpf, String name, String email, String password, Integer age
+    public User(Long id, String cpf, String name, String email, String password, Integer age
             , Sex sex, Integer shortage, Integer yearsContribution, Integer monthsContribution
             , Integer daysContribution, Integer points) {
         this.id = id;

@@ -3,15 +3,15 @@ package com.bandeira.sistema_aposentadoria.application.gateways;
 public interface PensionSimulationGateway {
 
 
-    String doMaleAgeSimulation(Long id);
+    String doMaleAgeSimulation(String cpf);
 
-    String doMaleSimulationForContributionTimeAndPoints(Long id);
+    String doMaleSimulationForContributionTimeAndPoints(String cpf);
 
-    String doMaleSimulationByAgeAndContributionTime(Long id);
+    String doMaleSimulationByAgeAndContributionTime(String cpf);
 
-    String doFemaleAgeSimulation(Long id);
+    String doFemaleAgeSimulation(String cpf);
 
-    String doFemaleSimulationForContributionTimeAndPoints(Long id);
+    String doFemaleSimulationForContributionTimeAndPoints(String cpf);
 
-    String doFemaleSimulationByAgeAndContributionTime(Long id);
+    String doFemaleSimulationByAgeAndContributionTime(String cpf);
 }
