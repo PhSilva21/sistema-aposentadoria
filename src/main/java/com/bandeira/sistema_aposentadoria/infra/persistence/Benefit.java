@@ -20,6 +20,8 @@ public class Benefit {
 
     private String name;
 
+    private String cpf;
+
     private String organResponsible;
 
     private String organShipper;
@@ -29,14 +31,14 @@ public class Benefit {
     private StatusBenefits statusBenefits;
 
 
-
-
-    public Benefit(UUID id, String name, String organResponsible, String organShipper
-            , LocalDate date) {
+    public Benefit(UUID id, String name, String cpf, String organResponsible, String organShipper
+            , LocalDate date, StatusBenefits statusBenefits) {
         this.id = id;
         this.name = name;
+        this.cpf = cpf;
         this.organResponsible = organResponsible;
         this.organShipper = organShipper;
         this.date = date;
+        this.statusBenefits = statusBenefits;
     }
 }

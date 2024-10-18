@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@RequiredArgsConstructor
 public class PensionRepositoryGateway implements PensionSimulationGateway {
 
     private final UserFeign userFeign;
 
+    public PensionRepositoryGateway(UserFeign userFeign) {
+        this.userFeign = userFeign;
+    }
+
     @Override
-    public String maleAgeSimulation(Long id) {
+    public String doMaleAgeSimulation(Long id) {
         var user = userFeign.findById(id);
 
         if (user.getSex().equals(Sex.MAN)) {
@@ -27,7 +30,7 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String maleSimulationForContributionTimeAndPoints(Long id) {
+    public String doMaleSimulationForContributionTimeAndPoints(Long id) {
         var user = userFeign.findById(id);
 
         if (user.getSex().equals(Sex.MAN)) {
@@ -45,7 +48,7 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String maleSimulationByAgeAndContributionTime(Long id) {
+    public String doMaleSimulationByAgeAndContributionTime(Long id) {
         var user = userFeign.findById(id);
 
         if (user.getSex().equals(Sex.MAN)) {
@@ -58,7 +61,7 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String femaleAgeSimulation(Long id) {
+    public String doFemaleAgeSimulation(Long id) {
         var user = userFeign.findById(id);
 
         if (user.getSex().equals(Sex.WOMAN)) {
@@ -71,7 +74,7 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String femaleSimulationForContributionTimeAndPoints(Long id) {
+    public String doFemaleSimulationForContributionTimeAndPoints(Long id) {
         var user = userFeign.findById(id);
 
         if (user.getSex().equals(Sex.WOMAN)) {
@@ -84,7 +87,7 @@ public class PensionRepositoryGateway implements PensionSimulationGateway {
     }
 
     @Override
-    public String femaleSimulationByAgeAndContributionTime(Long id) {
+    public String doFemaleSimulationByAgeAndContributionTime(Long id) {
         var user = userFeign.findById(id);
 
         if (user.getSex().equals(Sex.WOMAN)) {

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "ms-users", path = "/users")
 public interface UserFeign {
 
-    @GetMapping(params =  "id")
-    User findById(@RequestParam("id") Long id);
+    @GetMapping(params =  "cpf")
+    User findByCpf(@RequestParam("cpf") String cpf);
 }

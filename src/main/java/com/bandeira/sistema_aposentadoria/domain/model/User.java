@@ -1,7 +1,9 @@
 package com.bandeira.sistema_aposentadoria.domain.model;
 
 import com.bandeira.sistema_aposentadoria.domain.unums.Sex;
-import com.bandeira.sistema_aposentadoria.infra.persistence.gateways.Benefit;
+import com.bandeira.sistema_aposentadoria.infra.persistence.Benefit;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class User {
 
     private String id;
@@ -37,4 +40,21 @@ public class User {
     private Integer points;
 
     private List<Benefit> benefits = new ArrayList<>();
+
+    public User(String id, String cpf, String name, String email, String password, Integer age
+            , Sex sex, Integer shortage, Integer yearsContribution, Integer monthsContribution
+            , Integer daysContribution, Integer points) {
+        this.id = id;
+        this.cpf = cpf;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.sex = sex;
+        this.shortage = shortage;
+        this.yearsContribution = yearsContribution;
+        this.monthsContribution = monthsContribution;
+        this.daysContribution = daysContribution;
+        this.points = points;
+    }
 }

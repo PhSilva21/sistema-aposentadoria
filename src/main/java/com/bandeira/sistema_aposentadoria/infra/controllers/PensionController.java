@@ -1,7 +1,6 @@
 package com.bandeira.sistema_aposentadoria.infra.controllers;
 
 import com.bandeira.sistema_aposentadoria.application.usecases.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/pension")
-@RequiredArgsConstructor
 public class PensionController {
 
     private final MaleAgeSimulation maleAgeSimulation;
@@ -27,7 +25,18 @@ public class PensionController {
     private  final FemaleSimulationForContributionTimeAndPoints femaleSimulationForContributionTimeAndPoints;
 
 
-
+    public PensionController(MaleAgeSimulation maleAgeSimulation, MaleSimulationByAgeAndContributionTime
+            maleSimulationByAgeAndContributionTime, MaleSimulationForContributionTimeAndPoints
+            maleSimulationForContributionTimeAndPoints, FemaleAgeSimulation femaleAgeSimulation
+            , FemaleSimulationByAgeAndContributionTime femaleSimulationByAgeAndContributionTime
+            , FemaleSimulationForContributionTimeAndPoints femaleSimulationForContributionTimeAndPoints) {
+        this.maleAgeSimulation = maleAgeSimulation;
+        this.maleSimulationByAgeAndContributionTime = maleSimulationByAgeAndContributionTime;
+        this.maleSimulationForContributionTimeAndPoints = maleSimulationForContributionTimeAndPoints;
+        this.femaleAgeSimulation = femaleAgeSimulation;
+        this.femaleSimulationByAgeAndContributionTime = femaleSimulationByAgeAndContributionTime;
+        this.femaleSimulationForContributionTimeAndPoints = femaleSimulationForContributionTimeAndPoints;
+    }
 
     @GetMapping("/male/age-simulation")
     public ResponseEntity<String> doMaleAgeSimulation(@RequestBody Long id) {
